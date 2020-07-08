@@ -36,6 +36,7 @@ for path in path_list:
     headers = {'content-type': 'application/json'}
     response = requests.post(request_url, data=params, headers=headers)
     if response:
+        # beauty表示漂亮度：0-100，spoofing表示图片合成度：0.00048以下为轻度，以上为重度
         beauty = response.json()['result']['face_list'][0]['beauty']
         spoofing = response.json()['result']['face_list'][0]['spoofing']
         print(pciture_name + '\tbeauty:' + str(beauty) + '\tspoofing:' + str(spoofing))
