@@ -39,6 +39,6 @@ for path in path_list:
         # beauty表示漂亮度：0-100，spoofing表示图片合成度：0.00048以下为轻度，以上为重度
         beauty = response.json()['result']['face_list'][0]['beauty']
         spoofing = response.json()['result']['face_list'][0]['spoofing']
-        print(pciture_name + '\tbeauty:' + str(beauty) + '\tspoofing:' + str(spoofing))
+        print(pciture_name + ' \tbeauty:' + str(beauty) + ' \tspoofing:' + str(spoofing))
     # 发起请求太快，会导致百度API连接失效，按每秒处理2条速度
     time.sleep(0.5)
