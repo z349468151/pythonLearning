@@ -1,28 +1,26 @@
 import pygame
-import sys
 from AlienGame.settings import Settings
 from AlienGame.ship import Ship
+import AlienGame.game_functions as gf
 
 
 def run_game():
     # 初始化游戏
     pygame.init()
+    # 初始化设置
     my_setting = Settings()
+    # 初始化屏幕
     screen = pygame.display.set_mode((my_setting.screen_width, my_setting.screen_height))
+    # 初始化飞船
     ship = Ship(screen)
     # 设置屏幕Title
     pygame.display.set_caption('Alien Invasion')
     # 开始游戏主循环
     while True:
         # 循环监控键盘鼠标事件
-        for event in pygame.event.get():
-            # 如果事件为quit，就退出
-            if event.type == pygame.QUIT:
-                sys.exit()
-        screen.fill(my_setting.bg_color)
-        ship.blitme()
-        # 刷新屏幕，更新图形当前位置
-        pygame.display.flip()
+        gf.check_events(ship)
+        ship.update()
+        gf.update_screen(my_setting, screen, ship)
 
 
 if __name__ == '__main__':
