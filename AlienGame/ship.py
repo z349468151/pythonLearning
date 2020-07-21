@@ -17,20 +17,27 @@ class Ship(object):
         # 使得图片底部位置等于程序窗口底部位置
         self.rect.bottom = self.screen_rect.bottom
         # 在飞船属性center中存储小数值
-        self.center = float(self.rect.centerx)
+        self.centerX = float(self.rect.centerx)
+        self.centerY = float(self.rect.centery)
         # 定义移动标志
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
 
     def update(self):
         '''根据移动标志调整飞船位置'''
-        if self.moving_right:
-            self.center += self.ai_setting.ship_speed_factor
-        elif self.moving_left:
-            self.center -= self.ai_setting.ship_speed_factor
+        if self.moving_right and self.rect.right < self.screen_rect.right:
+            self.centerX += self.ai_setting.ship_speed_factor
+        elif self.moving_left and self.rect.left > 0:
+            self.centerX -= self.ai_setting.ship_speed_factor
+        elif self.moving_up and self.rect.top > 0:
+            self.centerY -= self.ai_setting.ship_speed_factor
+        elif self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.centerY += self.ai_setting.ship_speed_factor
         # 根据self.center更新rect对象
-        self.rect.centerx = self.center
-
+        self.rect.centerx = self.centerX
+        self.rect.centery = self.centerY
 
     def blitme(self):
         '''将飞船呈现在屏幕上'''
