@@ -7,3 +7,5 @@ class Settings(object):
         # 设置屏幕大小
         self.screen_height = 600
         self.screen_width = 800
+        # 飞船的设置
+        self.ship_speed_factor = 1.5
