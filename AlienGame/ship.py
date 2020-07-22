@@ -19,7 +19,7 @@ class Ship(object):
         # 在飞船属性center中存储小数值
         self.centerX = float(self.rect.centerx)
         self.centerY = float(self.rect.centery)
-        # 定义移动标志
+        # 定义移动标志，如果不用标志，按下后只能移动一格，通过更改标签状态，在keyup之前都为True则每次循环都可以移动。
         self.moving_right = False
         self.moving_left = False
         self.moving_up = False
