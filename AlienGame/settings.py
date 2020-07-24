@@ -9,7 +9,9 @@ class Settings(object):
         self.screen_width = 800
         # 飞船的设置
         self.ship_speed_factor = 1.5
+        # 子弹的设置
         self.bullet_speed_factor = 1
         self.bullet_wide = 3
         self.bullet_hight = 10
         self.bullen_color = 60, 60, 60
+        self.bullets_allowed = 3
