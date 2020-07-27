@@ -62,7 +62,7 @@ class Settings(object):
         self.screen_size = (800, 600)
         self.screen_color = (230, 230, 230)
         # 设置飞船速度
-        self.ship_speed = 1.2
+        self.ship_speed = 1.6
         # 设置子弹速度
         self.bullet_speed = 1
         # 设置同一屏幕内子弹最大数量
