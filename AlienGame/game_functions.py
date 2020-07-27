@@ -55,7 +55,7 @@ def update_screen(ai_settings, screen, ship, bullets):
 
 
 def update_bullets(bullets):
-    # 更新子弹的位置
+    # 更新子弹的编组
     bullets.update()
     # 删除消失的子弹
     for bullet in bullets.copy():
