@@ -1,6 +1,7 @@
 import pygame
 import sys
 from AlienGame.bullet import Bullet
+from AlienGame.alien import Alien
 
 
 # 循环监控键盘鼠标事件
@@ -41,7 +42,7 @@ def check_keyup_events(event, ship):
         ship.moving_down = False
 
 
-def update_screen(ai_settings, screen, ship, alien, bullets):
+def update_screen(ai_settings, screen, ship, aliens, bullets):
     # 从设置里获取屏幕设置
     screen.fill(ai_settings.bg_color)
     # 在飞船和外星人后面重绘所有子弹：
@@ -49,7 +50,7 @@ def update_screen(ai_settings, screen, ship, alien, bullets):
         bullet.draw_bullet()
     # 从ship类里获取飞船
     ship.blitme()
-    alien.blitme()
+    aliens.draw(screen)
     # 刷新屏幕，更新图形当前位置
     pygame.display.flip()
 
@@ -61,3 +62,42 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+
+def get_number_aliens_x(ai_settings, alien_width):
+    # 计算每行可容纳多少外星人
+    available_space_x = ai_settings.screen_width - 2 * alien_width
+    number_aliens_x = int(available_space_x / (2 * alien_width))
+    return number_aliens_x
+
+
+def create_alien(ai_settings, screen, aliens, alien_number, row_number):
+    # 创建一个外星人并将其放在当前行
+    alien = Alien(ai_settings, screen)
+    alien_width = alien.rect.width
+    alien.x = alien_width + 2 * alien_width * alien_number
+    alien.rect.x = alien.x
+    alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+    aliens.add(alien)
+
+
+def create_fleet(ai_settings, screen, ship, aliens):
+    # 创建一个外星人，计算一行可以容纳多少外星人
+    alien = Alien(ai_settings, screen)
+    number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width)
+    number_rows = get_number_rows(ai_settings, ship.rect.height, alien.rect.height)
+
+    # 创建第一行外星人
+    for row_number in range(number_rows):
+        for alien_number in range(number_aliens_x):
+            create_alien(ai_settings, screen, aliens, alien_number, row_number)
+
+
+def get_number_rows(ai_settings, ship_height, alien_height):
+    # 计算屏幕可容纳多少行外星人
+    available_apace_y = (ai_settings.screen_height - (3 * alien_height) - ship_height)
+    number_rows = int(available_apace_y / (2 * alien_height))
+    return number_rows
+
+def update_aliens(aliens):
+    aliens.update()

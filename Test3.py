@@ -4,3 +4,7 @@ for i in range(3, 30):
         listA.append(i)
 
 print(listA)
+try:
+    print(test)
+except Exception as e:
+    print(str(e)+"这个错误需要修改")
