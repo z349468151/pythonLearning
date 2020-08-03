@@ -3,7 +3,7 @@ from AlienGame.settings import Settings
 from AlienGame.ship import Ship
 import AlienGame.game_functions as gf
 from pygame.sprite import Group
-from AlienGame.alien import Alien
+from AlienGame.game_stats import GameStats
 
 
 def run_game():
@@ -17,6 +17,8 @@ def run_game():
     ship = Ship(screen, ai_settings)
     # 设置屏幕Title
     pygame.display.set_caption('Alien Invasion')
+    # 创建一个用于存储游戏统计信息的实例
+    stats = GameStats(ai_settings)
     # 创建一个用于存储子弹的编组
     bullets = Group()
     # 创建一个外星人编组
@@ -28,12 +30,13 @@ def run_game():
     while True:
         # 循环监控键盘鼠标事件
         gf.check_events(ai_settings, screen, ship, bullets)
-        # 更新飞船位置
-        ship.update()
-        # 更新子弹的位置，删除消失的子弹
-        gf.update_bullets(bullets)
-        # 更新外星人的位置
-        gf.update_aliens(aliens)
+        if stats.game_active:
+            # 更新飞船位置
+            ship.update()
+            # 更新子弹的位置，删除消失的子弹
+            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+            # 更新外星人的位置
+            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
         # 整体刷新屏幕
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
