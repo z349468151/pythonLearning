@@ -7,19 +7,23 @@ class Ship(object):
         self.image = pygame.image.load('AlienGame/images/ship.png')
 
 
-def check_events(move_left, move_right, move_up, move_down):
+def check_events(ship_rect, screen_rect, move_left, move_right, move_up, move_down):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT and move_left:
                 move_left = True
-            elif event.key == pygame.K_RIGHT:
+                ship_rect.centerx -= 1
+            elif event.key == pygame.K_RIGHT and ship_rect.right < screen_rect.right:
                 move_right = True
-            elif event.key == pygame.K_UP:
+                ship_rect.centerx += 1
+            elif event.key == pygame.K_UP and ship_rect.top > 0:
                 move_up = True
-            elif event.key == pygame.K_DOWN:
+                ship_rect.centery -= 1
+            elif event.key == pygame.K_DOWN and ship_rect.bottom < screen_rect.bottom:
                 move_down = True
+                ship_rect.centery += 1
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 move_left = False
@@ -29,7 +33,6 @@ def check_events(move_left, move_right, move_up, move_down):
                 move_up = False
             elif event.key == pygame.K_DOWN:
                 move_down = False
-    return move_left, move_right, move_up, move_down
 
 
 def run_game():
@@ -45,30 +48,10 @@ def run_game():
     move_up = False
     move_down = False
     while True:
-        move_left, move_right, move_up, move_down = check_events(move_left, move_right, move_up, move_down)
-        print(ship_rect.left)
-        if move_left and ship_rect.left > 0:
-            ship_rect.centerx -= 1
-        elif move_right and ship_rect.right < screen_rect.right:
-            ship_rect.centerx += 1
-        elif move_up and ship_rect.top > 0:
-            ship_rect.centery -= 1
-        elif move_down and ship_rect.bottom < screen_rect.bottom:
-            ship_rect.centery += 1
+        check_events(ship_rect, screen_rect, move_left, move_right, move_up, move_down)
         screen.fill(bg_color)
         screen.blit(ship.image, ship_rect)
         pygame.display.flip()
-
-
-def run_game1():
-    pygame.init()
-    pygame.display.set_mode((800, 600))
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-            elif event.type == pygame.KEYDOWN:
-                print(event.key)
 
 
 if __name__ == '__main__':
