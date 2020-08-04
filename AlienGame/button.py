@@ -25,3 +25,8 @@ class Button(object):
         self.msg_image = self.font.render(msg, True, self.text_color, self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
+
+    def draw_button(self):
+        # 用一个颜色填充按钮，再绘制文本
+        self.screen.fill(self.button_color, self.rect)
+        self.screen.blit(self.msg_image, self.msg_image_rect)

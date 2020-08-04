@@ -43,7 +43,7 @@ def check_keyup_events(event, ship):
         ship.moving_down = False
 
 
-def update_screen(ai_settings, screen, ship, aliens, bullets):
+def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
     # 从设置里获取屏幕设置
     screen.fill(ai_settings.bg_color)
     # 在飞船和外星人后面重绘所有子弹：
@@ -52,6 +52,10 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
     # 从ship类里获取飞船
     ship.blitme()
     aliens.draw(screen)
+    # 如果游戏处于非活动状态，就绘制play按钮
+    if not stats.game_active:
+        play_button.draw_button()
+
     # 刷新屏幕，更新图形当前位置
     pygame.display.flip()
 
