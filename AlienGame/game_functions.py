@@ -69,7 +69,7 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
 
 
 def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
-    '''响应子弹和外星人的碰撞'''
+    """响应子弹和外星人的碰撞"""
     # 删除发生碰撞的子弹和外星人
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
@@ -131,7 +131,7 @@ def change_fleet_direction(ai_settings, aliens):
 
 
 def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
-    '''响应被外星人撞到的飞船'''
+    """响应被外星人撞到的飞船"""
     # 将ships_left减1
     if stats.ships_left > 0:
         stats.ships_left -= 1
@@ -148,7 +148,7 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
 
 
 def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
-    '''检查是否有外星人到达了屏幕底端'''
+    """检查是否有外星人到达了屏幕底端"""
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:

@@ -3,7 +3,7 @@ from pygame.sprite import Sprite
 
 
 class Alien(Sprite):
-    '''表示单个外星人'''
+    """表示单个外星人"""
 
     def __init__(self, ai_settings, screen):
         # 初始化外星人，并设置其位置

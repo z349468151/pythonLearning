@@ -3,7 +3,7 @@ import pygame
 
 class Ship(object):
     def __init__(self, screen, ai_setting):
-        '''初始化飞船并设置其初始位置'''
+        """初始化飞船并设置其初始位置"""
         self.screen = screen
         self.ai_setting = ai_setting
         # 加载飞船，获取其外接矩形
@@ -26,7 +26,7 @@ class Ship(object):
         self.moving_down = False
 
     def update(self):
-        '''根据移动标志调整飞船位置'''
+        """根据移动标志调整飞船位置"""
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.centerX += self.ai_setting.ship_speed_factor
         elif self.moving_left and self.rect.left > 0:
@@ -40,10 +40,10 @@ class Ship(object):
         self.rect.centery = self.centerY
 
     def blitme(self):
-        '''将飞船呈现在屏幕上'''
+        """将飞船呈现在屏幕上"""
         self.screen.blit(self.image, self.rect)
 
     def center_ship(self):
-        '''让飞船在屏幕上居中'''
+        """让飞船在屏幕上居中"""
         self.center = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom

@@ -1,5 +1,5 @@
 class Settings(object):
-    '''游戏中所有设置'''
+    """游戏中所有设置"""
 
     def __init__(self):
         # 设置背景色
