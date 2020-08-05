@@ -14,7 +14,7 @@ class Socreboard(object):
         self.stats = stats
         # 显示得分信息使用的字体设置
         self.text_color = (30, 30, 30)
-        self.font = pygame.font.SysFont(None, 48)
+        self.font = pygame.font.SysFont(None, 32)
         # 准备初始得分图像
         self.prep_score()
         # 准备包含最高得分和当前得分的图像
