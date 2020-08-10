@@ -1,4 +1,4 @@
-#!E:\zl dev\pythonLearning\venv\Scripts\python.exe
+#!C:\Users\zhoulong2.LENOVO\Desktop\zl\pythonLearning\venv\Scripts\python.exe
 # -*- coding: utf-8 -*-
 # This file is part of pygal
 #
