@@ -2,8 +2,8 @@ from matplotlibTest.die import Die
 import pygal
 
 # 创建一个D6
-die_1 = Die(8)
-die_2 = Die(8)
+die_1 = Die(20)
+die_2 = Die(3)
 
 # 掷几次骰子，并将结果存储在一个列表中
 results = []
@@ -19,7 +19,7 @@ for value in range(2, die_1.num_sides + die_2.num_sides + 1):
 # 对结果进行可视化
 hist = pygal.Bar()
 hist.title = "Result of rolling one D6 1000 times."
-hist.x_labels = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16']
+hist.x_labels = [str(x) for x in range(2, die_1.num_sides + die_2.num_sides + 1)]
 hist.x_title = "Result"
 hist.y_title = "Frequency of Result"
 hist.add('D8+D8', frequencies)
